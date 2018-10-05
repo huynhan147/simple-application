@@ -1,19 +1,13 @@
 
 [Source](https://mithril.js.org/simple-application.html "Permalink to Simple application - Mithril.js")
 
-# Simple application - Mithril.js
+# Ứng dụng đơn giản - Mithril.js
 
-* Getting Started
-* Resources
-* Key concepts
-* Social
-* Misc
+Hãy phát triển một ứng dụng đơn giản bao gồm một số khía cạnh chính của Single Page Applications
 
-Let's develop a simple application that covers some of the major aspects of Single Page Applications
+Một ví dụ tương tác đang chạy có thể được xem ở đây [flems: Simple Application][1]
 
-An interactive running example can be seen here [flems: Simple Application][1]
-
-First let's create an entry point for the application. Create a file `index.html`:
+Đầu tiên hãy tạo một điểm bắt đầu cho ứng dụng. Tạo một file `index.html`:
     
     
     
@@ -29,23 +23,23 @@ First let's create an entry point for the application. Create a file `index.html
     
     
 
-The `` line indicates this is an HTML 5 document. The first `charset` meta tag indicates the encoding of the document and the `viewport` meta tag dictates how mobile browsers should scale the page. The `title` tag contains the text to be displayed on the browser tab for this application, and the `script` tag indicates what is the path to the Javascript file that controls the application.
+`<!doctype html>` dòng cho biết đây là văn bản HTML 5. Thẻ meta `charset` đầu tiên cho biết loại mã hóa của tài liệu và thẻ meta` viewport` quy định cách các trình duyệt di động hiển thị trang. Thẻ `title` chứa văn bản được hiển thị trên tab trình duyệt cho ứng dụng này và thẻ` script` cho biết đường dẫn đến tệp Javascript điều khiển ứng dụng là gì.
 
-We could create the entire application in a single Javascript file, but doing so would make it difficult to navigate the codebase later on. Instead, let's split the code into _modules_, and assemble these modules into a _bundle_ `bin/app.js`.
+Chúng ta có thể tạo toàn bộ ứng dụng trong duy nhất một file Javascript, nhưng làm như vậy sẽ khiến khó khăn trong việc điều hướng codebase. Thay vào đó, hãy chia code thành các _modules_ và gom nhóm các mô đun này thành _bundle_ `bin / app.js`.
 
-There are many ways to setup a bundler tool, but most are distributed via NPM. In fact, most modern Javascript libraries and tools are distributed that way, including Mithril. NPM stands for Node.js Package Manager. To download NPM, [install Node.js][2]; NPM is installed automatically with it. Once you have Node.js and NPM installed, open the command line and run this command:
+Có nhiều cách để thiết lập một công cụ bundler, nhưng hầu hết được phân phối qua NPM. Trên thực tế, hầu hết các thư viện và công cụ Javascript hiện đại được phân phối theo cách đó, bao gồm cả Mithril. NPM là viết tắt của Node.js Package Manager. Để tải NPM, [cài đặt Node.js] [2]; NPM được cài đặt tự động cùng với nó. Khi bạn đã cài đặt Node.js và NPM, hãy mở command line  và chạy lệnh này: 
     
     
     npm init -y
     
 
-If NPM is installed correctly, a file `package.json` will be created. This file will contain a skeleton project meta-description file. Feel free to edit the project and author information in this file.
+Nếu NPM được cài đặt thành công, một ffile `package.json` sẽ được tạo ra. file này sẽ chứa tệp meta-description là bộ xương của project. Vui lòng chỉnh sửa thông tin project và tác giả trong file này.
 
 * * *
 
-To install Mithril, follow the instructions in the [installation][3] page. Once you have a project skeleton with Mithril installed, we are ready to create the application.
+Để cài đặt Mithril, làm theo hướng dẫn trong trang [installation][3]. Khi bạn đã cài đặt bộ xương project với Mithril, chúng ta sẵn sàng tạo ứng dụng.
 
-Let's start by creating a module to store our state. Let's create a file called `src/models/User.js`
+Hãy bắt đầu bằng cách tạo một module để lưu trạng thái của chúng ta.Hãy tạo một file có tên là `src/models/User.js`
     
     
     // src/models/User.js
@@ -56,7 +50,7 @@ Let's start by creating a module to store our state. Let's create a file called 
     module.exports = User
     
 
-Now let's add code to load some data from a server. To communicate with a server, we can use Mithril's XHR utility, `m.request`. First, we include Mithril in the module:
+Bây giờ chúng ta hãy thêm code để tải một số dữ liệu từ server. Để giao tiếp với một server, chúng ta có thể sử dụng tiện ích XHR của Mithril, `m.request`. Đầu tiên, chúng ta include Mithril vào module:
     
     
     // src/models/User.js
@@ -69,7 +63,7 @@ Now let's add code to load some data from a server. To communicate with a server
     module.exports = User
     
 
-Next we create a function that will trigger an XHR call. Let's call it `loadList`
+Tiếp theo chúng ta tạo một hàm sẽ kích hoạt lời gọi XHR. Hãy gọi nó là 'loadList`
     
     
     // src/models/User.js
@@ -85,7 +79,7 @@ Next we create a function that will trigger an XHR call. Let's call it `loadList
     module.exports = User
     
 
-Then we can add an `m.request` call to make an XHR request. For this tutorial, we'll make XHR calls to the [REM][4] API, a mock REST API designed for rapid prototyping. This API returns a list of users from the `GET https://rem-rest-api.herokuapp.com/api/users` endpoint. Let's use `m.request` to make an XHR request and populate our data with the response of that endpoint.
+Sau đó, chúng ta có thể thêm một lời gọi `m.request` để thực hiện một request XHR. Đối với hướng dẫn này, chúng ta sẽ tạo lời gọi XHR đến API [REM] [4], một API REST giả lập được thiết kế để tạo mẫu nhanh. API này trả về danh sách người dùng từ endpoint `GET https: // rem-rest-api.herokuapp.com / api / users`. Hãy sử dụng `m.request` để tạo một request XHR và lưu dữ liệu với response của endpoint đó.
     
     
     // src/models/User.js
@@ -108,19 +102,19 @@ Then we can add an `m.request` call to make an XHR request. For this tutorial, w
     module.exports = User
     
 
-The `method` option is an [HTTP method][5]. To retrieve data from the server without causing side-effects on the server, we need to use the `GET` method. The `url` is the address for the API endpoint. The `withCredentials: true` line indicates that we're using cookies (which is a requirement for the REM API).
+Tùy chọn `method` là [HTTP method] [5]. Để lấy dữ liệu từ server mà không gây ra các ảnh hưởng phụ trên máy chủ, chúng ta cần sử dụng phương thức `GET`.`url` là địa chỉ cho endpoint API. Dòng `withCredentials: true` chỉ ra rằng chúng ta đang sử dụng các cookie (là một yêu cầu cho API REM).
 
-The `m.request` call returns a Promise that resolves to the data from the endpoint. By default, Mithril assumes a HTTP response body are in JSON format and automatically parses it into a Javascript object or array. The `.then` callback runs when the XHR request completes. In this case, the callback assigns the `result.data` array to `User.list`.
+Lời gọi `m.request` trả về Promise xử lý dữ liệu từ endpoint. Theo mặc định, Mithril giả định body của một response  HTTP có định dạng JSON và tự động phân tích cú pháp nó thành đối tượng hoặc mảng Javascript. Lệnh gọi `.then` chạy khi yêu cầu XHR hoàn tất. Trong trường hợp này, callbacks gán mảng `result.data` cho ` User.list`.
 
-Notice we also have a `return` statement in `loadList`. This is a general good practice when working with Promises, which allows us to register more callbacks to run after the completion of the XHR request.
+Lưu ý rằng chúng ta cũng có câu lệnh `return` trong` loadList`. Đây là một thói quen tốt khi làm việc với Promises, cho phép chúng ta đăng ký nhiều callbacks để chạy sau khi hoàn thành request XHR.
 
-This simple model exposes two members: `User.list` (an array of user objects), and `User.loadList` (a method that populates `User.list` with server data).
+Mô hình đơn giản này cho thấy hai thành phần: `User.list` (một mảng các đối tượng người dùng), và` User.loadList` (một phương thức lấy `User.list` với dữ liệu server).
 
 * * *
 
-Now, let's create a view module so that we can display data from our User model module.
+Bây giờ, hãy tạo một mô-đun view để chúng ta có thể hiển thị dữ liệu từ User model module của chúng ta.
 
-Create a file called `src/views/UserList.js`. First, let's include Mithril and our model, since we'll need to use both:
+Tạo một file có tên là `src/views/UserList.js`. Trước tiên, hãy đưa Mithril và mô hình của chúng ta, vì chúng ta sẽ cần sử dụng cả hai:
     
     
     // src/views/UserList.js
@@ -128,7 +122,7 @@ Create a file called `src/views/UserList.js`. First, let's include Mithril and o
     var User = require("../models/User")
     
 
-Next, let's create a Mithril component. A component is simply an object that has a `view` method:
+Tiếp theo, hãy tạo một thành phần Mithril. Một thành phần đơn giản là một đối tượng có phương thức `view`:
     
     
     // src/views/UserList.js
@@ -142,9 +136,9 @@ Next, let's create a Mithril component. A component is simply an object that has
     }
     
 
-By default, Mithril views are described using [hyperscript][6]. Hyperscript offers a terse syntax that can be indented more naturally than HTML for complex tags, and in addition, since its syntax is simply Javascript, it's possible to leverage a lot of Javascript tooling ecosystem: for example [Babel][7], [JSX][8] (inline-HTML syntax extension), [eslint][9] (linting), [uglifyjs][10] (minification), [istanbul][11] (code coverage), [flow][12] (static type analysis), etc.
+Theo mặc định, Mithril views được mô tả bằng cách sử dụng [hyperscript][6]. Hyperscript ung cấp một cú pháp ngắn gọn có thể rút gọn tự nhiên hơn HTML cho các thẻ phức tạp, vì cú pháp của nó đơn giản là Javascript, có thể tận dụng rất nhiều hệ sinh thái công cụ Javascript: Ví dụ [Babel][7], [JSX][8] (phần mở rộng cú pháp  inline-HTML), [eslint][9] (linting), [uglifyjs][10] (minification), [istanbul][11] (code coverage), [flow][12] (static type analysis), etc.
 
-Let's use Mithril hyperscript to create a list of items. Hyperscript is the most idiomatic way of writing Mithril views, but [JSX is another popular alternative that you could explore][8] once you're more comfortable with the basics:
+Hãy sử dụng Mersril hyperscript để tạo danh sách các item. Hyperscript là cách tốt nhất để viết các views Mithril, nhưng [JSX là một lựa chọn phổ biến khác mà bạn có thể khám phá] [8] một khi bạn cảm thấy thoải mái hơn với những điều cơ bản:
     
     
     // src/views/UserList.js
@@ -158,10 +152,10 @@ Let's use Mithril hyperscript to create a list of items. Hyperscript is the most
     }
     
 
-The `".user-list"` string is a CSS selector, and as you would expect, `.user-list` represents a class. When a tag is not specified, `div` is the default. So this view is equivalent to `
+Chuỗi `" .user-list "` là một bộ chọn CSS, và như bạn mong đợi, `.user-list` đại diện cho một lớp. Khi thẻ không được chỉ định, `div` là giá trị mặc định. Vì vậy, chế độ xem này tương đương với `<div class="user-list"></div>`
 `.
 
-Now, let's reference the list of users from the model we created earlier (`User.list`) to dynamically loop through data:
+Bây giờ, hãy tham khảo danh sách người dùng từ mô hình mà chúng ta đã tạo trước đó (`User.list`) để tự động lặp qua dữ liệu:
     
     
     // src/views/UserList.js
@@ -177,9 +171,9 @@ Now, let's reference the list of users from the model we created earlier (`User.
     }
     
 
-Since `User.list` is a Javascript array, and since hyperscript views are just Javascript, we can loop through the array using the `.map` method. This creates an array of vnodes that represents a list of `div`s, each containing the name of a user.
+Vì `User.list` là một mảng Javascript, và vì các khung nhìn hyperscript chỉ là Javascript, chúng ta có thể lặp qua mảng bằng cách sử dụng phương thức` .map`. Điều này tạo ra một loạt các vnodes đại diện cho một danh sách các `div`, mỗi cái chứa tên của một người dùng
 
-The problem, of course, is that we never called the `User.loadList` function. Therefore, `User.list` is still an empty array, and thus this view would render a blank page. Since we want `User.loadList` to be called when we render this component, we can take advantage of component [lifecycle methods][13]:
+Tất nhiên, vấn đề là chúng ta không bao giờ gọi hàm `User.loadList`. Do đó, `User.list` vẫn là một mảng trống, và do đó view này sẽ hiển thị một trang trống. Vì chúng ta muốn hàm `User.loadList` được gọi khi chúng ta render thành phần này, chúng ta có thể tận dụng lợi thế của thành phần [lifecycle methods:] [13]:
     
     
     // src/views/UserList.js
@@ -196,12 +190,11 @@ The problem, of course, is that we never called the `User.loadList` function. Th
     }
     
 
-Notice that we added an `oninit` method to the component, which references `User.loadList`. This means that when the component initializes, User.loadList will be called, triggering an XHR request. When the server returns a response, `User.list` gets populated.
+Lưu ý rằng chúng ta đã thêm phương thức `oninit` vào thành phần, tham chiếu` User.loadList`. Điều này có nghĩa là khi thành phần khởi tạo, User.loadList  được gọi, sẽ kích hoạt một request XHR. Khi server trả về một response, `User.list` gán giá trị.
 
-Also notice we **didn't** do `oninit: User.loadList()` (with parentheses at the end). The difference is that `oninit: User.loadList()` calls the function once and immediately, but `oninit: User.loadList` only calls that function when the component renders. This is an important difference and a common pitfall for developers new to javascript: calling the function immediately means that the XHR request will fire as soon as the source code is evaluated, even if the component never renders. Also, if the component is ever recreated (through navigating back and forth through the application), the function won't be called again as expected.
-* * *
+Cũng lưu ý rằng chúng ta **không** thực hiện `oninit: User.loadList ()` (với dấu ngoặc đơn ở cuối). Sự khác biệt là `oninit: User.loadList ()` gọi hàm một lần và ngay lập tức, nhưng `oninit: User.loadList` chỉ gọi hàm đó khi thành phần render. Đây là một sự khác biệt quan trọng và một cạm bẫy phổ biến cho các nhà phát triển mới đến javascript:  gọi hàm ngay lập tức có nghĩa là request XHR sẽ kích hoạt ngay sau khi source code  được thực thi, ngay cả khi thành phần không bao giờ được renders.. Ngoài ra, nếu thành phần được tạo lại (thông qua điều hướng qua lại trong ứng dụng), hàm sẽ không được gọi lại như mong đợi.
 
-Let's render the view from the entry point file `src/index.js` we created earlier:
+Hãy render view từ file đầu vào `src / index.js` mà chúng ta đã tạo trước đó:
     
     
     // src/index.js
@@ -212,17 +205,17 @@ Let's render the view from the entry point file `src/index.js` we created earlie
     m.mount(document.body, UserList)
     
 
-The `m.mount` call renders the specified component (`UserList`) into a DOM element (`document.body`), erasing any DOM that was there previously. Opening the HTML file in a browser should now display a list of person names.
+Lệnh `m.mount` render thành phần được chỉ định (` UserList`) thành một phần tử DOM (`document.body`), xóa bất kỳ DOM nào đã có trước đó. Mở tệp HTML trong trình duyệt bây giờ sẽ hiển thị danh sách tên mọi người
 
 * * *
 
-Right now, the list looks rather plain because we have not defined any styles.
+Ngay bây giờ, danh sách trông khá đơn giản vì chúng tôi chưa xác định bất kỳ kiểu nào.
 
-There are many similar conventions and libraries that help organize application styles nowadays. Some, like [Bootstrap][14] dictate a specific set of HTML structures and semantically meaningful class names, which has the upside of providing low cognitive dissonance, but the downside of making customization more difficult. Others, like [Tachyons][15] provide a large number of self-describing, atomic class names at the cost of making the class names themselves non-semantic. "CSS-in-JS" is another type of CSS system that is growing in popularity, which basically consists of scoping CSS via transpilation tooling. CSS-in-JS libraries achieve maintainability by reducing the size of the problem space, but come at the cost of having high complexity.
+Có nhiều conventions và thư viện tương tự giúp tổ chức các style ứng dụng ngày nay. Một số, như [Bootstrap] [14] quyết định cho một bộ cấu trúc HTML cụ thể và tên lớp có ý nghĩa về ngữ nghĩa, có xu hướng cung cấp dissonance nhận thức thấp, nhưng nhược điểm của việc tùy biến trở nên khó khăn hơn. Những người khác, giống như [Tachyons] [15] cung cấp một số lượng lớn các tên lớp học tự mô tả, nguyên tử với chi phí tự đặt tên lớp là không có ngữ nghĩa. "CSS-in-JS" là một loại hệ thống CSS đang phát triển phổ biến, về cơ bản bao gồm CSS phạm vi thông qua công cụ biên dịch. Các thư viện CSS-in-JS đạt được khả năng bảo trì bằng cách giảm kích thước của không gian vấn đề, nhưng đến với chi phí có độ phức tạp cao.
 
-Regardless of what CSS convention/library you choose, a good rule of thumb is to avoid the cascading aspect of CSS. To keep this tutorial simple, we'll just use plain CSS with overly explicit class names, so that the styles themselves provide the atomicity of Tachyons, and class name collisions are made unlikely through the verbosity of the class names. Plain CSS can be sufficient for low-complexity projects (e.g. 3 to 6 man-months of initial implementation time and few project phases).
+Bất kể convention / thư viện CSS bạn chọn là gì, nguyên tắc chung là tránh các khía cạnh xếp tầng của CSS. Để giữ cho hướng dẫn này đơn giản, chúng tôi sẽ chỉ sử dụng CSS đơn giản với các tên class  rõ ràng, để các kiểu tự cung cấp nguyên tử của Tachyons và sự va chạm tên lớp không được thông qua độ dài của tên lớp. Plain  CSS có thể đủ cho các dự án có độ phức tạp thấp (ví dụ: 3 đến 6 tháng của thời gian triển khai ban đầu và một vài giai đoạn dự án).
 
-To add styles, let's first create a file called `styles.css` and include it in the `index.html` file:
+Để thêm các style, trước tiên hãy tạo một tệp có tên là `styles.css` và include nó vào trong tệp` index.html`:
     
     
     
@@ -239,7 +232,7 @@ To add styles, let's first create a file called `styles.css` and include it in t
     
     
 
-Now we can style the `UserList` component:
+Bây giờ chúng ta có thể style cho thành phần `UserList`:
     
     
     .user-list {list-style:none;margin:0 0 10px;padding:0;}
@@ -247,19 +240,19 @@ Now we can style the `UserList` component:
     .user-list-item:hover {text-decoration:underline;}
     
 
-The CSS above is written using a convention of keeping all styles for a rule in a single line, in alphabetical order. This convention is designed to take maximum advantage of screen real estate, and makes it easier to scan the CSS selectors (since they are always on the left side) and their logical grouping, and it enforces predictable and uniform placement of CSS rules for each selector.
+CSS ở trên được viết bằng cách sử dụng quy ước giữ tất cả các kiểu cho một quy tắc trong một dòng, theo thứ tự bảng chữ cái. Quy ước này được thiết kế để tận dụng tối đa màn hình thực và dễ dàng quét các bộ chọn CSS (vì chúng luôn ở bên trái) và nhóm logic của chúng, và nó thực thi các quy tắc CSS có thể dự đoán và thống nhất cho mỗi bộ chọn .
 
-Obviously you can use whatever spacing/indentation convention you prefer. The example above is just an illustration of a not-so-widespread convention that has strong rationales behind it, but deviate from the more widespread cosmetic-oriented spacing conventions.
+Rõ ràng bạn có thể sử dụng bất kỳ quy ước khoảng cách / indentation nào bạn thích. Ví dụ trên chỉ là một minh họa của một quy ước không phổ biến rộng rãi có các lý do mạnh mẽ đằng sau nó, nhưng đi chệch khỏi các quy ước khoảng cách về cosmetic-oriented.
 
-Reloading the browser window now should display some styled elements.
+Tải lại cửa sổ trình duyệt ngay bây giờ sẽ hiển thị một số phần tử được style
 
 * * *
 
-Let's add routing to our application.
+Hãy thêm định tuyến vào ứng dụng của chúng ta.
 
-Routing means binding a screen to a unique URL, to create the ability to go from one "page" to another. Mithril is designed for Single Page Applications, so these "pages" aren't necessarily different HTML files in the traditional sense of the word. Instead, routing in Single Page Applications retains the same HTML file throughout its lifetime, but changes the state of the application via Javascript. Client side routing has the benefit of avoiding flashes of blank screen between page transitions, and can reduce the amount of data being sent down from the server when used in conjunction with an web service oriented architecture (i.e. an application that downloads data as JSON instead of downloading pre-rendered chunks of verbose HTML).
+Định tuyến có nghĩa là liên kết màn hình với một URL duy nhất, để tạo khả năng chuyển từ một trang "trang này sang trang khác". Mithril được thiết kế cho các ứng dụng đơn trang, vì vậy các "trang" này không nhất thiết phải là các tệp HTML khác nhau theo nghĩa truyền thống của từ đó. Thay vào đó, định tuyến trong các ứng dụng trang đơn giữ lại cùng một tệp HTML trong suốt vòng đời của nó, nhưng thay đổi trạng thái của ứng dụng thông qua Javascript. Định tuyến phía máy khách có lợi ích của việc tránh nhấp nháy màn hình trống giữa các lần chuyển trang và có thể giảm lượng dữ liệu được gửi xuống từ máy chủ khi được sử dụng kết hợp với kiến trúc hướng dịch vụ web (tức là ứng dụng tải xuống dữ liệu dưới dạng JSON thay vì tải xuống các đoạn kết xuất trước của HTML chi tiết).
 
-We can add routing by changing the `m.mount` call to a `m.route` call:
+Chúng ta có thể thêm định tuyến bằng cách thay đổi `m.mount` thành lệnh` m.route`:
     
     
     // src/index.js
@@ -271,16 +264,15 @@ We can add routing by changing the `m.mount` call to a `m.route` call:
         "/list": UserList
     })
     
+lời gọi `m.route` chỉ định rằng ứng dụng sẽ được hiển thị thành` document.body`. Đối số `" / list "` là tuyến mặc định. Điều đó có nghĩa là người dùng sẽ được chuyển hướng đến tuyến đường đó nếu họ đến một tuyến đường không tồn tại. Đối tượng `{" / list ": UserList}` khai báo một bản đồ các tuyến hiện có và các thành phần mà mỗi tuyến đường xử lý.
 
-The `m.route` call specifies that the application will be rendered into `document.body`. The `"/list"` argument is the default route. That means the user will be redirected to that route if they land in a route that does not exist. The `{"/list": UserList}` object declares a map of existing routes, and what components each route resolves to.
+Làm mới trang trong trình duyệt bây giờ sẽ thêm `#! / List` vào URL để chỉ ra rằng định tuyến đang hoạt động. Do tuyến đường đó hiển thị UserList, chúng ta vẫn sẽ thấy danh sách những người trên màn hình như trước đây.
 
-Refreshing the page in the browser should now append `#!/list` to the URL to indicate that routing is working. Since that route render UserList, we should still see the list of people on screen as before.
-
-The `#!` snippet is known as a hashbang, and it's a commonly used string for implementing client-side routing. It's possible to configure this string it via [`m.route.prefix`][16]. Some configurations require supporting server-side changes, so we'll just continue using the hashbang for the rest of this tutorial.
+Đoạn mã `#!` Được gọi là một hashbang, và nó là một chuỗi thường được sử dụng để thực hiện định tuyến phía client. Có thể cấu hình chuỗi này qua [`m.route.prefix`] [16]. Một số cấu hình yêu cầu hỗ trợ thay đổi phía server, vì vậy chúng ta sẽ tiếp tục sử dụng hashbang cho phần còn lại của hướng dẫn này.
 
 * * *
 
-Let's add another route to our application for editing users. First let's create a module called `views/UserForm.js`
+Hãy thêm một tuyến đường khác vào ứng dụng của chúng ta để chỉnh sửa users. Trước tiên, hãy tạo một mô-đun gọi là `views / UserForm.js`
     
     
     // src/views/UserForm.js
@@ -292,7 +284,7 @@ Let's add another route to our application for editing users. First let's create
     }
     
 
-Then we can `require` this new module from `src/index.js`
+Sau đó chúng ta có thể `require`  module mới này từ `src/index.js`
     
     
     // src/index.js
@@ -306,7 +298,7 @@ Then we can `require` this new module from `src/index.js`
     })
     
 
-And finally, we can create a route that references it:
+Và cuối cùng, chúng ta có thể tạo một tuyến đường tham chiếu đến nó :
     
     
     // src/index.js
@@ -321,9 +313,9 @@ And finally, we can create a route that references it:
     })
     
 
-Notice that the new route has a `:id` in it. This is a route parameter; you can think of it as a wild card; the route `/edit/1` would resolve to `UserForm` with an `id` of `"1"`. `/edit/2` would also resolve to `UserForm`, but with an `id` of `"2"`. And so on.
+Lưu ý rằng route mới có một `: id` trong nó. Đây là một tham số tuyến đường; bạn có thể nghĩ về nó như một thẻ hoang dã; route `/ edit / 1` sẽ phân giải thành` UserForm` bằng `id` của` "1" `. `/ edit / 2` cũng sẽ giải quyết thành` UserForm`, nhưng với `id` của` "2" `. Và cứ thế.
 
-Let's implement the `UserForm` component so that it can respond to those route parameters:
+Hãy triển khai thành phần `UserForm` để nó có thể đáp ứng các tham số tuyến đường đó:
     
     
     // src/views/UserForm.js
@@ -342,7 +334,7 @@ Let's implement the `UserForm` component so that it can respond to those route p
     }
     
 
-And let's add some styles to `styles.css`:
+Và hãy thêm một số styles vào `styles.css`:
     
     
     /* styles.css */
@@ -358,7 +350,7 @@ And let's add some styles to `styles.css`:
     .button:hover {background:#e8e8e8;}
     
 
-Right now, this component does nothing to respond to user events. Let's add some code to our `User` model in `src/models/User.js`. This is how the code is right now:
+Ngay bây giờ, thành phần này không có gì để đáp lại các sự kiện của người dùng. Hãy thêm một số code vào mô hình `User` của chúng ta trong` src / models / User.js`. Đây là cách code ngay bây giờ:
     
     
     // src/models/User.js
@@ -381,7 +373,7 @@ Right now, this component does nothing to respond to user events. Let's add some
     module.exports = User
     
 
-Let's add code to allow us to load a single user
+Hãy thêm code để cho phép chúng ta tải một người dùng
     
     
     // src/models/User.js
@@ -416,7 +408,7 @@ Let's add code to allow us to load a single user
     module.exports = User
     
 
-Notice we added a `User.current` property, and a `User.load(id)` method which populates that property. We can now populate the `UserForm` view using this new method:
+Lưu ý rằng chúng ta đã thêm thuộc tính `User.current` và phương thức` User.load (id) `để thêm thuộc tính đó. Bây giờ chúng ta có thể thêm vào view `UserForm` bằng cách sử dụng phương thức mới này:
     
     
     // src/views/UserForm.js
@@ -437,9 +429,9 @@ Notice we added a `User.current` property, and a `User.load(id)` method which po
     }
     
 
-Similar to the `UserList` component, `oninit` calls `User.load()`. Remember we had a route parameter called `:id` on the `"/edit/:id": UserForm` route? The route parameter becomes an attribute of the `UserForm` component's vnode, so routing to `/edit/1` would make `vnode.attrs.id` have a value of `"1"`.
+Tương tự như thành phần `UserList`,` oninit` gọi `User.load ()`. Hãy nhớ rằng chúng ta đã có một tham số tuyến đường được gọi là `: id` trên tuyến đường` "/ edit /: id": UserForm`? Tham số tuyến đường trở thành một thuộc tính của vnode của thành phần `UserForm`, vì vậy việc định tuyến tới` / edit / 1` sẽ làm cho `vnode.attrs.id` có giá trị` "1" `.
 
-Now, let's modify the `UserList` view so that we can navigate from there to a `UserForm`:
+Bây giờ, hãy sửa đổi view `UserList` để chúng ta có thể điều hướng từ đó đến` UserForm`:
     
     
     // src/views/UserList.js
@@ -456,13 +448,13 @@ Now, let's modify the `UserList` view so that we can navigate from there to a `U
     }
     
 
-Here we changed `.user-list-item` to `a.user-list-item`. We added an `href` that references the route we want, and finally we added `oncreate: m.route.link`. This makes the link behave like a routed link (as opposed to merely behaving like a regular link). What this means is that clicking the link would change the part of URL that comes after the hashbang `#!` (thus changing the route without unloading the current HTML page)
+Ở đây chúng ta đã thay đổi `.user-list-item` thành` a.user-list-item`. Chúng tôi đã thêm một `href` tham chiếu đến tuyến đường chúng ta muốn và cuối cùng chúng ta đã thêm` oncreate: m.route.link`. Điều này làm cho liên kết hoạt động giống như một liên kết định tuyến (trái ngược với việc chỉ hoạt động giống như một liên kết thông thường). Điều này có nghĩa là việc nhấp vào liên kết sẽ thay đổi một phần của URL xuất hiện sau hashbang `#!` (Do đó thay đổi tuyến đường mà không cần tải trang HTML hiện tại)
 
-If you refresh the page in the browser, you should now be able to click on a person and be taken to a form. You should also be able to press the back button in the browser to go back from the form to the list of people.
+Nếu bạn làm mới trang trong trình duyệt, bây giờ bạn có thể nhấp vào một người và được đưa đến một biểu mẫu. Bạn cũng có thể nhấn nút quay lại trong trình duyệt để quay lại từ biểu mẫu tới danh sách mọi người.
 
 * * *
 
-The form itself still doesn't save when you press "Save". Let's make this form work:
+Bản thân biểu mẫu vẫn không lưu khi bạn nhấn "Save". Hãy làm cho biểu mẫu này hoạt động:
     
     
     // src/views/UserForm.js
@@ -494,9 +486,9 @@ The form itself still doesn't save when you press "Save". Let's make this form w
     }
     
 
-We added `oninput` events to both inputs, that set the `User.current.firstName` and `User.current.lastName` properties when a user types.
+Chúng ta đã thêm các sự kiện `oninput` vào cả hai đầu vào, đặt thuộc tính` User.current.firstName` và `User.current.lastName` khi người dùng nhập.
 
-In addition, we declared that a `User.save` method should be called when the "Save" button is pressed. Let's implement that method:
+Ngoài ra, chúng ta đã tuyên bố rằng phương thức `User.save` sẽ được gọi khi nhấn nút " Save ". Hãy thực hiện phương thức đó:
     
     
     // src/models/User.js
@@ -540,15 +532,15 @@ In addition, we declared that a `User.save` method should be called when the "Sa
     module.exports = User
     
 
-In the `save` method at the bottom, we used the `PUT` HTTP method to indicate that we are upserting data to the server.
+Trong phương thức `save` ở phía dưới, chúng ta đã sử dụng phương thức `PUT`  HTTP để chỉ ra rằng chúng ta đang upserting dữ liệu đến máy chủ.
 
-Now try editing the name of a user in the application. Once you save a change, you should be able to see the change reflected in the list of users.
+Bây giờ hãy thử chỉnh sửa tên của người dùng trong ứng dụng. Khi bạn lưu thay đổi, bạn sẽ có thể thấy thay đổi được phản ánh trong danh sách người dùng.
 
 * * *
 
-Currently, we're only able to navigate back to the user list via the browser back button. Ideally, we would like to have a menu - or more generically, a layout where we can put global UI elements
+Hiện tại, chúng ta chỉ có thể điều hướng trở lại danh sách người dùng thông qua nút quay lại trình duyệt. Lý tưởng nhất, chúng ta muốn có một trình đơn - hoặc tổng quát hơn, một bố cục nơi chúng ta có thể đặt các yếu tố giao diện người dùng toàn cầu
 
-Let's create a file `src/views/Layout.js`:
+Hãy tạo một file `src/views/Layout.js`:
     
     
     // src/views/Layout.js
@@ -569,10 +561,10 @@ Let's create a file `src/views/Layout.js`:
 This component is fairly straightforward, it has a `
 ` with a link to the list of users. Similar to what we did to the `/edit` links, this link uses `m.route.link` to activate routing behavior in the link.
 
-Notice there's also a `
-` element with `vnode.children` as children. `vnode` is a reference to the vnode that represents an instance of the Layout component (i.e. the vnode returned by a `m(Layout)` call). Therefore, `vnode.children` refer to any children of that vnode.
+Chú ý cũng có một `
+`phần tử có` vnode.children` là con. `vnode` là một tham chiếu đến vnode đại diện cho một cá thể của thành phần Layout (tức là vnode được trả về bởi một lời gọi` m (Layout) `). Do đó, `vnode.children` chỉ mọi trẻ em của vnode đó.
 
-Let's add some styles:
+Hãy thêm một số styles:
     
     
     /* styles.css */
@@ -591,7 +583,7 @@ Let's add some styles:
     .button:hover {background:#e8e8e8;}
     
 
-Let's change the router in `src/index.js` to add our layout into the mix:
+Hãy thay đổi bộ định tuyến trong `src / index.js` để thêm layout  của chúng ta vào mix:
     
     
     // src/index.js
@@ -615,23 +607,12 @@ Let's change the router in `src/index.js` to add our layout into the mix:
     })
     
 
-We replaced each component with a [RouteResolver][17] (basically, an object with a `render` method). The `render` methods can be written in the same way as regular component views would be, by nesting `m()` calls.
+Chúng ta đã thay thế mỗi thành phần bằng một [RouteResolver] [17] (về cơ bản, một đối tượng có phương thức `render`). Các phương thức `render` có thể được viết theo cách tương tự như các thành phần view thông thường, bằng cách lồng các lệnh` m () `.
 
-The interesting thing to pay attention to is how components can be used instead of a selector string in a `m()` call. Here, in the `/list` route, we have `m(Layout, m(UserList))`. This means there's a root vnode that represents an instance of `Layout`, which has a `UserList` vnode as its only child.
+Điều thú vị cần lưu ý là cách các thành phần có thể được sử dụng thay vì một chuỗi chọn trong một lời gọi `m ()`. Ở đây, trong route `/ list`, chúng ta có` m (Layout, m (UserList)) `. Điều này có nghĩa là có một vnode gốc đại diện cho một thể hiện của `Layout`, trong đó có một vnode` UserList` là con duy nhất của nó.
 
-In the `/edit/:id` route, there's also a `vnode` argument that carries the route parameters into the `UserForm` component. So if the URL is `/edit/1`, then `vnode.attrs` in this case is `{id: 1}`, and this `m(UserForm, vnode.attrs)` is equivalent to `m(UserForm, {id: 1})`. The equivalent JSX code would be ``.
+Trong route `/ edit /: id`, cũng có một đối số` vnode` mang các tham số route vào thành phần `UserForm`. Vì vậy, nếu URL là `/ edit / 1`, thì` vnode.attrs` trong trường hợp này là `{id: 1}`, và `m (UserForm, vnode.attrs)` này tương đương với `m (UserForm, {id: 1}) `. Mã JSX tương đương sẽ là `<UserForm id={vnode.attrs.id} />`.
 
-Refresh the page in the browser and now you'll see the global navigation on every page in the app.
-
-* * *
-
-This concludes the tutorial.
-
-In this tutorial, we went through the process of creating a very simple application where we can list users from a server and edit them individually. As an extra exercise, try to implement user creation and deletion on your own.
-
-If you want to see more examples of Mithril code, check the [examples][18] page. If you have questions, feel free to drop by the [Mithril chat room][19].
-
-* * *
 
 License: MIT. © Leo Horie.
 
