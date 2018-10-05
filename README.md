@@ -209,11 +209,11 @@ Lệnh `m.mount` render thành phần được chỉ định (` UserList`) thàn
 
 * * *
 
-Ngay bây giờ, danh sách trông khá đơn giản vì chúng tôi chưa xác định bất kỳ kiểu nào.
+Ngay bây giờ, danh sách trông khá đơn giản vì chúng ta chưa xác định bất kỳ kiểu nào.
 
 Có nhiều conventions và thư viện tương tự giúp tổ chức các style ứng dụng ngày nay. Một số, như [Bootstrap] [14] quyết định cho một bộ cấu trúc HTML cụ thể và tên lớp có ý nghĩa về ngữ nghĩa, có xu hướng cung cấp dissonance nhận thức thấp, nhưng nhược điểm của việc tùy biến trở nên khó khăn hơn. Những người khác, giống như [Tachyons] [15] cung cấp một số lượng lớn các tên lớp học tự mô tả, nguyên tử với chi phí tự đặt tên lớp là không có ngữ nghĩa. "CSS-in-JS" là một loại hệ thống CSS đang phát triển phổ biến, về cơ bản bao gồm CSS phạm vi thông qua công cụ biên dịch. Các thư viện CSS-in-JS đạt được khả năng bảo trì bằng cách giảm kích thước của không gian vấn đề, nhưng đến với chi phí có độ phức tạp cao.
 
-Bất kể convention / thư viện CSS bạn chọn là gì, nguyên tắc chung là tránh các khía cạnh xếp tầng của CSS. Để giữ cho hướng dẫn này đơn giản, chúng tôi sẽ chỉ sử dụng CSS đơn giản với các tên class  rõ ràng, để các kiểu tự cung cấp nguyên tử của Tachyons và sự va chạm tên lớp không được thông qua độ dài của tên lớp. Plain  CSS có thể đủ cho các dự án có độ phức tạp thấp (ví dụ: 3 đến 6 tháng của thời gian triển khai ban đầu và một vài giai đoạn dự án).
+Bất kể convention / thư viện CSS bạn chọn là gì, nguyên tắc chung là tránh các khía cạnh xếp tầng của CSS. Để giữ cho hướng dẫn này đơn giản, chúng ta sẽ chỉ sử dụng CSS đơn giản với các tên class  rõ ràng, để các kiểu tự cung cấp nguyên tử của Tachyons và sự va chạm tên lớp không được thông qua độ dài của tên lớp. Plain  CSS có thể đủ cho các dự án có độ phức tạp thấp (ví dụ: 3 đến 6 tháng của thời gian triển khai ban đầu và một vài giai đoạn dự án).
 
 Để thêm các style, trước tiên hãy tạo một tệp có tên là `styles.css` và include nó vào trong tệp` index.html`:
     
@@ -448,7 +448,7 @@ Bây giờ, hãy sửa đổi view `UserList` để chúng ta có thể điều 
     }
     
 
-Ở đây chúng ta đã thay đổi `.user-list-item` thành` a.user-list-item`. Chúng tôi đã thêm một `href` tham chiếu đến tuyến đường chúng ta muốn và cuối cùng chúng ta đã thêm` oncreate: m.route.link`. Điều này làm cho liên kết hoạt động giống như một liên kết định tuyến (trái ngược với việc chỉ hoạt động giống như một liên kết thông thường). Điều này có nghĩa là việc nhấp vào liên kết sẽ thay đổi một phần của URL xuất hiện sau hashbang `#!` (Do đó thay đổi tuyến đường mà không cần tải trang HTML hiện tại)
+Ở đây chúng ta đã thay đổi `.user-list-item` thành` a.user-list-item`. Chúng ta đã thêm một `href` tham chiếu đến tuyến đường chúng ta muốn và cuối cùng chúng ta đã thêm` oncreate: m.route.link`. Điều này làm cho liên kết hoạt động giống như một liên kết định tuyến (trái ngược với việc chỉ hoạt động giống như một liên kết thông thường). Điều này có nghĩa là việc nhấp vào liên kết sẽ thay đổi một phần của URL xuất hiện sau hashbang `#!` (Do đó thay đổi tuyến đường mà không cần tải trang HTML hiện tại)
 
 Nếu bạn làm mới trang trong trình duyệt, bây giờ bạn có thể nhấp vào một người và được đưa đến một biểu mẫu. Bạn cũng có thể nhấn nút quay lại trong trình duyệt để quay lại từ biểu mẫu tới danh sách mọi người.
 
