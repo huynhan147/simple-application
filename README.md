@@ -9,21 +9,22 @@ Một ví dụ tương tác đang chạy có thể được xem ở đây [flems
 
 Đầu tiên hãy tạo một điểm bắt đầu cho ứng dụng. Tạo một file `index.html`:
     
-    
-    
-    
-        
-            
-            
-            
-        
-        
-            http://www.google-analytics.com/ga.js"> src="">https://mithril.js.org/bin/app.js">
+           <!doctype html>
+       <html>
+           <head>
+               <meta charset="utf-8" />
+               <meta name="viewport" content="width=device-width, initial-scale=1" />
+               <title>My Application</title>
+           </head>
+           <body>
+               <script src="bin/app.js"></script>
+           </body>
+       </html>
         
     
     
 
-`<!doctype html>` dòng cho biết đây là văn bản HTML 5. Thẻ meta `charset` đầu tiên cho biết loại mã hóa của tài liệu và thẻ meta` viewport` quy định cách các trình duyệt di động hiển thị trang. Thẻ `title` chứa văn bản được hiển thị trên tab trình duyệt cho ứng dụng này và thẻ` script` cho biết đường dẫn đến tệp Javascript điều khiển ứng dụng là gì.
+Dòng`<!doctype html>` cho biết đây là văn bản HTML 5. Thẻ meta `charset` đầu tiên cho biết loại mã hóa của tài liệu và thẻ meta` viewport` quy định cách các trình duyệt di động hiển thị trang. Thẻ `title` chứa văn bản được hiển thị trên tab trình duyệt cho ứng dụng này và thẻ` script` cho biết đường dẫn đến tệp Javascript điều khiển ứng dụng là gì.
 
 Chúng ta có thể tạo toàn bộ ứng dụng trong duy nhất một file Javascript, nhưng làm như vậy sẽ khiến khó khăn trong việc điều hướng codebase. Thay vào đó, hãy chia code thành các _modules_ và gom nhóm các mô đun này thành _bundle_ `bin / app.js`.
 
@@ -33,7 +34,7 @@ Có nhiều cách để thiết lập một công cụ bundler, nhưng hầu h�
     npm init -y
     
 
-Nếu NPM được cài đặt thành công, một ffile `package.json` sẽ được tạo ra. file này sẽ chứa tệp meta-description là bộ xương của project. Vui lòng chỉnh sửa thông tin project và tác giả trong file này.
+Nếu NPM được cài đặt thành công, một file `package.json` sẽ được tạo ra. file này sẽ chứa tệp meta-description là bộ xương của project. Vui lòng chỉnh sửa thông tin project và tác giả trong file này.
 
 * * *
 
@@ -136,7 +137,7 @@ Tiếp theo, hãy tạo một thành phần Mithril. Một thành phần đơn g
     }
     
 
-Theo mặc định, Mithril views được mô tả bằng cách sử dụng [hyperscript][6]. Hyperscript ung cấp một cú pháp ngắn gọn có thể rút gọn tự nhiên hơn HTML cho các thẻ phức tạp, vì cú pháp của nó đơn giản là Javascript, có thể tận dụng rất nhiều hệ sinh thái công cụ Javascript: Ví dụ [Babel][7], [JSX][8] (phần mở rộng cú pháp  inline-HTML), [eslint][9] (linting), [uglifyjs][10] (minification), [istanbul][11] (code coverage), [flow][12] (static type analysis), etc.
+Theo mặc định, Mithril views được mô tả bằng cách sử dụng [hyperscript][6]. Hyperscript ung cấp một cú pháp ngắn gọn có thể rút gọn tự nhiên hơn HTML với các thẻ phức tạp, vì cú pháp của nó đơn giản là Javascript, có thể tận dụng rất nhiều hệ sinh thái công cụ Javascript: Ví dụ [Babel][7], [JSX][8] (phần mở rộng cú pháp  inline-HTML), [eslint][9] (linting), [uglifyjs][10] (minification), [istanbul][11] (code coverage), [flow][12] (static type analysis), etc.
 
 Hãy sử dụng Mersril hyperscript để tạo danh sách các item. Hyperscript là cách tốt nhất để viết các views Mithril, nhưng [JSX là một lựa chọn phổ biến khác mà bạn có thể khám phá] [8] một khi bạn cảm thấy thoải mái hơn với những điều cơ bản:
     
@@ -224,10 +225,18 @@ Bất kể convention / thư viện CSS bạn chọn là gì, nguyên tắc chun
             
             
             
-            https://mithril.js.org/styles.css" rel="stylesheet">
-        
-        
-            ">https://mithril.js.org/bin/app.js">
+            <!doctype html>
+            <html>
+                <head>
+                    <meta charset="utf-8" />
+                    <meta name="viewport" content="width=device-width, initial-scale=1" />
+                    <title>My Application</title>
+                    <link href="styles.css" rel="stylesheet" />
+                </head>
+                <body>
+                    <script src="bin/app.js"></script>
+                </body>
+            </html>
         
     
     
@@ -558,8 +567,7 @@ Hãy tạo một file `src/views/Layout.js`:
     }
     
 
-This component is fairly straightforward, it has a `
-` with a link to the list of users. Similar to what we did to the `/edit` links, this link uses `m.route.link` to activate routing behavior in the link.
+Thành phần này khá đơn giản, nó có một <nav> với một liên kết đến danh sách người dùng. Tương tự như những gì chúng ta đã làm cho các liên kết /edit, liên kết này sử dụng m.route.link để kích hoạt hành vi định tuyến trong liên kết.
 
 Chú ý cũng có một `
 `phần tử có` vnode.children` là con. `vnode` là một tham chiếu đến vnode đại diện cho một cá thể của thành phần Layout (tức là vnode được trả về bởi một lời gọi` m (Layout) `). Do đó, `vnode.children` chỉ mọi trẻ em của vnode đó.
